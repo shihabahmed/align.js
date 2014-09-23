@@ -4,7 +4,7 @@ This plugin aligns elements vertically/horizontally within the parent element.
 
 Dependency
 ----------
-1. jQuery
+1. jQuery 1.4+
 
 Usage
 -----

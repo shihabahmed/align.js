@@ -1,4 +1,3 @@
-﻿
 /**
 * jquery.align.js
 * Version: 1.1
@@ -30,7 +29,7 @@
 			});
 		}, // vAlign
 
-		align: function (alignment) {
+		hAlign: function (alignment) {
 			return this.each(function () {
 				var align_parent, left, elem = $(this);
 				align_parent = elem.parent();
@@ -52,25 +51,39 @@
 	});
 
 	$(function () {
-		if ($('[data-valign]').length > 0) {
-			$('[data-valign]').each(function () {
-				var elem = $(this);
-				elem.vAlign(elem.attr("data-valign"));
-
-				$(window).resize(function () {
+		align = function () {
+			if ($('[data-valign]').length > 0) {
+				$('[data-valign]').each(function () {
+					var elem = $(this);
 					elem.vAlign(elem.attr("data-valign"));
-				});
-			});
-		}
-		if ($('[data-align]').length > 0) {
-			$('[data-align]').each(function () {
-				var elem = $(this);
-				elem.align(elem.attr("data-align"));
 
-				$(window).resize(function () {
-					elem.align(elem.attr("data-align"));
+					$(window).resize(function () {
+						setTimeout(function () {
+							elem.vAlign(elem.attr("data-valign"));
+						}, 500);
+					}).resize();
 				});
-			});
+			}
+			if ($('[data-align]').length > 0) {
+				$('[data-align]').each(function () {
+					var elem = $(this);
+					elem.hAlign(elem.attr("data-align"));
+
+					$(window).resize(function () {
+						setTimeout(function () {
+							elem.hAlign(elem.attr("data-align"));
+						}, 500);
+					}).resize();
+				});
+			}
 		}
+
+		align();
+
+		$(window).load(function () {
+			$(this).resize();
+		})
 	});
 })(jQuery);
+
+var align;
