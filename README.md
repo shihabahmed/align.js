@@ -1,4 +1,4 @@
-jquery.align.js
+align.js
 ===============
 This plugin aligns elements vertically/horizontally within the parent element.
 
